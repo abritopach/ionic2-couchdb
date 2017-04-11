@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{post?.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="pushAddCommentPage()"><ion-icon name="chatbubbles"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <h2>{{post?.title}}</h2>
+
+  <p>{{post?.content}}</p>
+
+  <h2>Comments</h2>
+
+  <ion-card *ngFor="let comment of comments">
+    <ion-card-header>
+      {{comment.author}}
+    </ion-card-header>
+    <ion-card-content>
+      {{comment.content}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
