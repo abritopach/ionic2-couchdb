@@ -25,6 +25,9 @@ CouchDB as its database and backend.
 	* Test in localhost: ionic serve
 	* Test in Android mobile: Add Android Platform: ionic add platform android / Add iOS Platform: ionic add platform ios
 	* Run: ionic run android / ionic run ios
+	
+	
+NOTE: Test in mobile: Change localhost IP in couchdb local.ini file. MAC (/Users/your-user/Library/Application Support/CouchDB/etc/couchdb/local.ini)
 
 ## License
 MIT License.

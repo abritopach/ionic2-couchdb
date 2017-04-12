@@ -8,6 +8,8 @@ import { ViewPostPage } from '../view-post/view-post';
 
 import { AddPostPage } from '../add-post/add-post';
 
+import { Environment } from '../../environments/environment'
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -17,9 +19,11 @@ export class HomePage {
 
   posts: any;
   postsImages: any;
+  environment: Environment;
 
   constructor(public navCtrl: NavController, public postsService: PostsService) {
     this.postsImages = [];
+    this.environment = new Environment("DEVELOPMENT");
   }
 
   ionViewDidLoad(){
@@ -60,7 +64,8 @@ export class HomePage {
       }
 
       else {
-        imgURL = "http://127.0.0.1:5984/couchblog/" + this.posts[index]._id + "/postImage.jpg";
+        //imgURL = "http://127.0.0.1:5984/couchblog/" + this.posts[index]._id + "/postImage.jpg";
+        imgURL = this.environment.getURL() + this.posts[index]._id + "/postImage.jpg";
       }
     }
 
