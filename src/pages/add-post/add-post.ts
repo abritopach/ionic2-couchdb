@@ -80,7 +80,17 @@ export class AddPostPage {
       this.imgURI = file_uri;
 
       let base64Image = "data:image/jpeg;base64," + file_uri; // base64 encoded string.
-      this.post._attachments = { "postImage.jpg": {"content_type":"image/jpg", "data": base64Image}};
+      console.log("base64Image");
+      console.log(base64Image);
+
+      this.convertToDataURLviaCanvas(file_uri, "image/jpeg")
+          .then( base64Img => {
+            console.log(base64Img);
+
+            let data = base64Img.toString().split("base64,");
+
+            this.post._attachments = { "postImage.jpg": {"content_type":"image/jpg", "data": data[1]}};
+          })
 
     }, (err) => {
       console.log("ERROR -> " + JSON.stringify(err))
@@ -121,6 +131,25 @@ export class AddPostPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  convertToDataURLviaCanvas(url, outputFormat){
+    return new Promise( (resolve, reject) => {
+      let img = new Image();
+      img.crossOrigin = 'Anonymous';
+      img.onload = function(){
+        let canvas = <HTMLCanvasElement> document.createElement('CANVAS'),
+            ctx = canvas.getContext('2d'),
+            dataURL;
+        canvas.height = this.height;
+        canvas.width = this.width;
+        ctx.drawImage(this, 0, 0);
+        dataURL = canvas.toDataURL(outputFormat);
+        canvas = null;
+        resolve(dataURL);
+      };
+      img.src = url;
+    });
   }
 
 }
