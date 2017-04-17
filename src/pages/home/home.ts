@@ -51,7 +51,8 @@ export class HomePage {
 
   getPostImage(index) {
 
-    let imgURL = "http://placehold.it/600x300";
+    //let imgURL = "http://placehold.it/600x300";
+    let imgURL = "assets/img/postImage.png";
 
     if (typeof this.posts[index]._attachments != "undefined") {
 
@@ -63,10 +64,12 @@ export class HomePage {
         imgURL = dataURIPrefix + attachment;
       }
 
+      /*
       else {
         //imgURL = "http://127.0.0.1:5984/couchblog/" + this.posts[index]._id + "/postImage.jpg";
-        imgURL = this.environment.getURL() + this.posts[index]._id + "/postImage.jpg";
+        //imgURL = this.environment.getURL() + this.posts[index]._id + "/postImage.jpg";
       }
+      */
     }
 
     return  imgURL;

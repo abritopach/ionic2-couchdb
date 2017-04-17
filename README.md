@@ -27,7 +27,9 @@ CouchDB as its database and backend.
 	* Run: ionic run android / ionic run ios
 	
 	
-NOTE: Test in mobile: Change localhost IP in couchdb local.ini file. MAC (/Users/your-user/Library/Application Support/CouchDB/etc/couchdb/local.ini)
+NOTE: Test in mobile: 
+ * Change localhost IP in couchdb local.ini file. MAC (/Users/your-user/Library/Application Support/CouchDB/etc/couchdb/local.ini)
+ * Change DEVELOPMENT IP in environments.ts.
 
 ## License
 MIT License.

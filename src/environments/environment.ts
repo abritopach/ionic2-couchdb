@@ -14,7 +14,7 @@ export class Environment {
                 this.absoluteURL = this.url + ':' + this.port.toString() + '/couchblog/';
                 break;
             case'DEVELOPMENT':
-                this.url = "http://192.168.1.38";
+                this.url = "http://192.168.1.40";
                 this.port = 5986;
                 this.absoluteURL = this.url + ':' + this.port.toString() + '/couchblog/';
                 break;

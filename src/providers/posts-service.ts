@@ -7,6 +7,7 @@ export class PostsService {
 
   posts: any;
   postSubject: any = new Subject();
+  post: any;
 
   constructor(public dataService: DataService, public zone: NgZone) {
 
@@ -45,6 +46,13 @@ export class PostsService {
 
         //console.log("emitPosts");
         //console.log(posts);
+
+        // Get post image.
+        for (let i = 0; i < posts.length; i++) {
+          if (typeof posts[i]._attachments != "undefined") {
+            this.getAttachment(posts[i]._id, i);
+          }
+        }
 
         this.posts = posts;
         this.postSubject.next(posts);
@@ -101,6 +109,20 @@ export class PostsService {
     // that is subscribed to it will be notified of the change.
     this.postSubject.next(this.posts);
 
+  }
+
+  getAttachment(docID, index) {
+
+    this.zone.run(() => {
+      this.dataService.db.get(docID, {attachments: true}).then((doc) => {
+        // handle result
+        this.post = doc;
+        //console.log(this.post._attachments);
+        this.posts[index]._attachments = this.post._attachments;
+        //console.log(this.posts[index]);
+        this.postSubject.next(this.posts);
+      });
+    });
   }
 
 
